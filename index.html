@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Log in and order final</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div id="studentDetails" v-if="isDetails">
+      <label for="name" class="label"> Name:</label>
+      <br>
+      <input v-model="name" class="basicEntry" required>
+      <br>
+      <br>
+      <label for="contact" class="label"> Contact:</label>
+      <br>
+      <input v-model="contact" class="basicEntry" required>
+      <br>
+      <br>
+      <label for="Prac" class="label"> Prac:</label>
+      <br>
+      <input v-model="prac" class="basicEntry" required>
+      <br>
+      <br>
+      <label for="group" class="label"> Group:</label>
+      <br>
+      <input v-model="group" class="basicEntry" required>
+      <br>
+      <br>
+      <label for="requiredDate" class="label"> Required Date (enter todays date if checking items in/out of pantry):</label>
+      <br>
+      <input v-model="requiredDate" class="basicEntry" required>
+      <br>
+      <br>
+      <button id="saveStudent" class="button" v-on:click="saveDetails"><b>Save Details</b>
+      </button>
+    </div>
+
+    <div id="currentInfo" v-if="detailsTaken">
+      <br>
+      {{activeStudent}}
+      <br>
+      <br>
+      <button id="removeStudent" class="button" v-on:click="removeDetails"><b>Remove Details</b>
+      </button>
+      <br>
+      <br>
+    </div>
+
+    <div id="orderForm" v-if="detailsTaken">
+      <label for="itemCategory" class="label"> Item Category:</label>
+      <br>
+      <input v-model="itemCategory" required>
+      <br>
+      <br>
+      <label for="product" class="label"> Product:</label>
+      <br>
+      <input v-model="product" required>
+      <br>
+      <br>
+      <label for="brand" class="label"> Preferred brand:</label>
+      <br>
+      <input v-model="brand" required>
+      <br>
+      <br>
+      <label for="amount" class="label"> Desired amount:</label>
+      <br>
+      <input v-model="amount" required>
+      <br>
+      <br>
+      <label for="comments" class="label"> Additional comments:</label>
+      <br>
+      <textarea v-model="comments" class="bigEntry"></textarea>
+      <br>
+      <br>
+      <button id="saveItem" class="button" v-on:click="saveItem"><b>Add to order</b>
+      </button>
+      <br>
+
+    </div>
+    <br>
+
+    <div id="currentOrder" v-if="detailsTaken">
+
+      <ol>
+        <li v-for="order in shoppingList">
+          {{order}}
+        </li>
+      </ol>
+      <br>
+      <br>
+      <button id="saveOrder" class="button" v-on:click="saveOrder"><b>Send order</b>
+      </button>
+      <br>
+      <br>
+      <button id="clearOrder" class="button" v-on:click="clearOrder"><b>Clear order</b>
+      </button>
+
+      <p>FROM PANTRY: </p>
+      <br>
+      {{orderFromPantry}}
+      <br><br>
+      <p>FROM STORE: </p>
+      <br>
+      {{orderFromStore}}
+    </div>
+
+  </div>
+
+</body>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
